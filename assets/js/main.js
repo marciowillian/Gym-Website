@@ -93,6 +93,11 @@ const calculateBmi = (e) => {
             calculateMessage.classList.add('color-green')
             calculateMessage.textContent = `Your BMI is ${bmi} and you are overweight 😔`
         }
+
+        //Remove message for four seconds
+        setTimeout(() => {
+            calculateMessage.textContent = '';
+        }, 4000);
     }
 }
 
