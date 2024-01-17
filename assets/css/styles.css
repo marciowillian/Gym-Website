@@ -863,7 +863,7 @@ img {
 /* Show Scroll Up*/
 
 .show-scroll {
-    bottom: 6rem;
+    bottom: 3rem;
 }
 
 
@@ -1137,5 +1137,9 @@ img {
     }
     .calculate__img {
         width: 300px;
+    }
+    /* Ajuste manual */
+    .show-scroll {
+        bottom: 3rem;
     }
 }
