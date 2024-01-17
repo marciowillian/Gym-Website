@@ -43,7 +43,18 @@ window.addEventListener('scroll', scrollHeader)
 
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+//TO DO
+// const sections = document.querySelectorAll('section[id')
 
+// const scrollActive = () => {
+//     const scrollY = window.pageYOffset
+
+//     sections.forEach(current => {
+//         const sectionHeight = current.offsetHeight,
+//         sectionTop = current.offset - 58,
+//         sectionClass = document.querySelector('.nav__menu a[href*=' + sectionId ])
+//     })
+// }
 
 /*=============== SHOW SCROLL UP ===============*/
 
@@ -104,3 +115,43 @@ const calculateBmi = (e) => {
 calculateForm.addEventListener('submit', calculateBmi)
 
 /*=============== EMAIL JS ===============*/
+const contactForm = document.getElementById('contact-form'),
+    contactMessage = document.getElementById('contact-message')
+contactUser = document.getElementById('contact-user');
+
+const sendEmail = (e) => {
+    e.preventDefault()
+
+    //Check if the field has a value
+    if (contactUser.value === '') {
+        contactMessage.classList.remove('color-green')
+        contactMessage.classList.add('color-red')
+
+        //Show message
+        contactMessage.textContent = 'You must enter your email 👆'
+
+        //Remove message three seconds
+        setTimeout(() => {
+            contactMessage.textContent = ''
+        }, 3000)
+    } else {
+        //serviceID - TemplateID - #form - publicKey
+        emailjs.sendForm('service_r0dskgp', 'template_dr2ynm3', '#contact-form', 'qayuHn9G3W7Hyth3K')
+            .then(() => {
+                contactMessage.classList.add('color-green')
+                contactMessage.textContent = 'You registred succesfully 💪'
+
+                //Remove message after three seconds
+                setTimeout(() => {
+                    contactMessage.textContent = ''
+                }, 3000)
+            }, (error) => {
+                alert('OOPS!, SOMETHING HAS FAILED...', error)
+            })
+
+        //To clear the input field
+        contactUser.value = ''
+    }
+}
+
+contactForm.addEventListener('submit', sendEmail)
